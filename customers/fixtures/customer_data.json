@@ -1,0 +1,54 @@
+[
+    {
+        "model": "customers.Customer",
+        "pk": 1,
+        "fields": {
+            "first_name": "Joe",
+            "last_name": "Miller",
+            "email": "miller.joe@testemail.com",
+            "address": "12345 Fake Street",
+            "city": "San Antonio",
+            "state": "Texas",
+            "zip": 72345
+        }
+    },
+    {
+        "model": "customers.Customer",
+        "pk": 2,
+        "fields": {
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "doe.john@testemail.com",
+            "address": "12345 Fraud Way",
+            "city": "San Antonio",
+            "state": "Texas",
+            "zip": 72346
+        }
+    },
+    {
+        "model": "customers.Customer",
+        "pk": 3,
+        "fields": {
+            "first_name": "Jane",
+            "last_name": "Dale",
+            "email": "dale.jane@testemail.com",
+            "address": "12345 Faux Valley",
+            "city": "Austin",
+            "state": "Texas",
+            "zip": 72347
+        }
+    },
+    {
+        "model": "customers.Customer",
+        "pk": 4,
+        "fields": {
+            "first_name": "Joanna",
+            "last_name": "Smith",
+            "email": "smith.joanna@testemail.com",
+            "address": "99999 False Street",
+            "city": "Brooklyn",
+            "state": "New York",
+            "zip": 12345
+        }
+    }
+]

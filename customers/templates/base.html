@@ -1,0 +1,35 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+  <style type="text/css">
+
+  </style>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <title>
+    Customers
+  </title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Customers</a>
+  <ul class="navbar-nav ml-auto">
+  </ul>
+</nav>
+<!--<header class="hero-image">
+  <div class="hero-text">
+    <h1>Customers app</h1>
+    <p>A database of customers</p>
+  </div>
+</header>-->
+<main class="container" id="app">
+  {% block content %}
+  {% endblock %}
+</main>
+</body>
+</html>

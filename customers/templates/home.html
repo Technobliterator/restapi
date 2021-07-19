@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Customers (total: {{ total_customers }})</h1>
+<section>
+  <p>General links:</p>
+  <ul>
+    <li><a href="customers">Customers</a></li>
+    <li><a href="customers?city=San+Antonio">Customers in San Antonio</a></li>
+    <li><a href="customers?state=Texas">Customers in Texas</a></li>
+    <li><a href="customers/1">Customer 1</a></li>
+  </ul>
+</section>
+
+<section>
+  <h2>Add customer</h2>
+  <form action="/customers/" method="post" class="form-group">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" class="btn btn-success">Add customer</button>
+  </form>
+</section>
+{% endblock %}
