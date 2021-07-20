@@ -6,6 +6,8 @@ from django.forms.models import model_to_dict
 from .models import Customer
 from .filters import CustomerFilter
 from .forms import CustomerForm
+from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.decorators import api_view
 import json
 
@@ -16,6 +18,27 @@ def index(response):
     total_customers = len(customers)
     return render(response, 'home.html', {'form': form, customers: 'customers', 'total_customers': total_customers})
 
+@swagger_auto_schema(method='get',
+    manual_parameters=[
+        openapi.Parameter( 'city', in_=openapi.IN_QUERY, description='Customers by city', type=openapi.TYPE_STRING, ),
+        openapi.Parameter( 'state', in_=openapi.IN_QUERY, description='Customers by state', type=openapi.TYPE_STRING, ),
+        openapi.Parameter( 'zip', in_=openapi.IN_QUERY, description='Customers by zip code', type=openapi.TYPE_STRING, ),
+    ])
+@swagger_auto_schema(methods=['post'],
+    request_body=openapi.Schema(
+        type=openapi.TYPE_OBJECT,
+        required=['version'],
+        properties={
+            'first_name': openapi.Schema(type=openapi.TYPE_STRING, description="Customer's first name"),
+            'last_name': openapi.Schema(type=openapi.TYPE_STRING, description="Customer's last name"),
+            'email': openapi.Schema(type=openapi.TYPE_STRING, description="Customer's email address"),
+            'address': openapi.Schema(type=openapi.TYPE_STRING, description="Customer's physical address"),
+            'city': openapi.Schema(type=openapi.TYPE_STRING, description="Customer's city"),
+            'state': openapi.Schema(type=openapi.TYPE_STRING, description="Customer's state"),
+            'zip': openapi.Schema(type=openapi.TYPE_STRING, description="Customer's zip code"),
+        },
+    ),
+    operation_description='Post new customer')
 @api_view(['GET', 'POST'])
 def customers(response):
     if response.method == 'POST':
@@ -56,3 +79,39 @@ def verify_customer(id):
         #processed_data = {'Full name': customer.get_full_name()}
     except Customer.DoesNotExist:
         raise Http404("Customer does not exist")
+
+'''
+first_name -- The customer's first name
+last_name -- The customer's last name
+email -- The customer's email address
+address -- The customer's physical address
+city -- The customer's city in their address
+state -- The customer's state in their address
+zip -- The customer's zip code'''
+
+'''
+Documentation
+---
+parameters:
+    - name: first_name
+        description: First name of customer
+        type: string
+    - name: last_name
+        description: Last name of customer
+        type: string
+    - name: email
+        description: Email address of customer
+        type: string
+    - name: address
+        description: Physical address of customer
+        type: string
+    - name: city
+        description: City of customer
+        type: string
+    - name: state
+        description: State of customer
+        type: string
+    - name: zip
+        description: Zip code of customer
+        type: string
+'''
