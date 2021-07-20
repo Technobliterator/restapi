@@ -18,10 +18,8 @@ def index(response):
 
 @api_view(['GET', 'POST'])
 def customers(response):
-    status = 200
     if response.method == 'POST':
         post(response)
-        status = 201
 
     data = Customer.objects.order_by('last_name')
 
@@ -29,7 +27,7 @@ def customers(response):
     filtered_data = serializers.serialize('python', filter.qs)
     processed_filtered_data = [c['fields'] for c in filtered_data]
 
-    return HttpResponse(json.dumps(processed_filtered_data), content_type="application/json", status=status)
+    return HttpResponse(json.dumps(processed_filtered_data), content_type="application/json")
 
 @api_view()
 def post(response):
